@@ -40,13 +40,36 @@ interface User{
     name : string;
 }
 
-const Sam :User = {name:'Sam'}
+// const Sam :User = {name:'Sam'}
 
 function showName(this:User){
     console.log(this.name)
 }
 
-const a = showName.bind(Sam);
-a();
+// const a = showName.bind(Sam);
+// a();
+
+
+interface User {
+    name : string;
+    age : number;
+}
+
+function join(name:string, age : string):string ;
+function join(name:string, age : number):User;
+function join(name:string,age:number | string): User | string{
+    if (typeof age === "number"){
+        return{
+            name,
+            age
+        };
+    }else {
+        return "나이는 숫자로 입력하세요"
+    }
+}
+
+const same : User = join("Sam", 30);
+const jane : string = join("Jane", "30");
+
 
 
